@@ -8,12 +8,13 @@
 import Foundation
 
 struct MemoryGame<CardContent> {
+    var title = "Memorize!"
     var cards: Array<Card>
     
     func choose(card: Card) {
         print("card chosen: \(card)")
     }
-    
+  
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         cards = Array<Card>()
         
@@ -22,6 +23,8 @@ struct MemoryGame<CardContent> {
             cards.append(Card(content: content, id: pairIndex*2))
             cards.append(Card(content: content, id: pairIndex*2+1))
         }
+        
+        cards.shuffle()
     }
     
     struct Card : Identifiable {
